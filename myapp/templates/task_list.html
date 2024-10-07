@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<h1><center>TASK LIST</center></h1>
+
+<div class="container mt-5">
+
+    <h1><center>Welcome {{request.user}}</center></h1><br>
+
+    <form action="">
+        <select name="category" id="" class="form-select" onchange="this.form.submit()">
+            <option value="all" {%if selected == "all" %} selected {%endif%}>all</option>
+
+            <option value="personal" {%if selected == "personal" %} selected {%endif%}>personal</option>
+            
+            <option value="business"{%if selected == "business" %} selected {%endif%}>business</option>
+           
+        </select>
+        
+    </form><br><br>
+
+    <div class="row">
+        {%for t in tasks%}
+
+        <div class="col-4">
+
+            <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header d-flex justify-content-between">
+                    <div> {{t.user}} </div>
+
+                    <div>
+                        {%if t.status == 'pending'%}
+
+                        <div class="spinner-grow text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+
+                        {%endif%}
+
+                        {%if t.status == 'in-progress'%}
+
+                        <div class="spinner-grow text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+
+                        {%endif%}
+
+                        {%if t.status == 'done'%}
+
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+
+                        {%endif%}
+                    </div>
+                    <div> {{t.status}} </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{t.title}}</h5>
+                    <p class="card-text">{{t.description}}</p>
+                </div>
+                <div class="card-footer text-body-white">
+                    created_date:{{t.created_date | date}}
+                    due_date:{{t.due_date | date}}
+                   <a href="{%url 'task_update' t.id%}">Update</a>
+                   <a href="{%url 'task_delete' t.id%}">Delete</a>
+
+                </div>
+            </div>
+
+        </div>
+
+        {%endfor%}
+
+    </div>
+</div>
+
+    
+
+
+{%endblock%}
+{%block script_block%}
+{%endblock%}

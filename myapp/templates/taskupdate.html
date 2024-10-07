@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+    
+    <h1><center>---Task Updation---</center></h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <form action="" method="post" class="border border-2 rounded p-5 w-100 mx-auto mt-5 shadow bg-secondary">
+                    {%csrf_token%}
+
+                    {{form.as_p}}
+
+                    <center><button class="submit btn btn-primary text-light bg-dark">Add</button></center>
+                </form>
+            </div>
+            <div class="col-3"></div>
+            
+        </div>
+
+
+
+    </div>
+{%endblock%}
+{%block script_block%}
+{%endblock%}
