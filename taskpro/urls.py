@@ -28,6 +28,7 @@ urlpatterns = [
     path("task/register",views.SignUpView.as_view(),name="register"),
     path("task/login",views.SignInView.as_view(),name="signin"),
     path("task/logout",views.SignOutView.as_view(),name="signout"),
+    path("",views.TaskSummaryView.as_view(),name="task_summary"),
 
 
 
